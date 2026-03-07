@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service TaskService {
+  rpc GetTasks (GetTasksRequest) returns (GetTasksReply);
+}
+
+message GetTasksRequest {
+}
+
+message GetTasksReply {
+  repeated Task tasks = 1;
+}
+
+message Task {
+  string title = 1;
+  string description = 2;
+}

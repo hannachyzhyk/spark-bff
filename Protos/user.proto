@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package user.v1;
+
+service UserService {
+    rpc login(LoginRequest) returns (LoginResult);
+    rpc register(RegisterRequest) returns (RegisterResult);
+    rpc getUserByName(GetUserByNameRequest) returns (GetUserResult);
+    rpc validateToken(ValidateTokenRequest) returns (ValidateTokenResult);
+}
+
+message GetUserResult {
+    User user = 1;
+}
+
+message User {
+    string id = 1;
+    string username = 2;
+}
+
+message GetUserByNameRequest {
+    string username = 1;
+}
+
+message StatusCode {
+    optional string token = 2;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResult {
+    optional string token = 1;
+}
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message RegisterResult {
+    optional string token = 1;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResult {
+    bool valid = 1;
+    string userId = 2;
+    repeated string roles = 3;
+}
